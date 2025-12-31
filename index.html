@@ -246,16 +246,9 @@ p{font-size:1.08rem;line-height:1.75;opacity:.9}
 
 <div class="pages" id="pages">
 
-<!-- ✅ UPDATED FIRST PAGE TEXT -->
 <section class="page"><div class="card">
 <h1>Hey Khushi 🌷</h1>
-<p>
-Kuch log zindagi mein aate hain,<br>
-aur kuch log zindagi ban jaate hain.<br>
-Tum mile toh yun laga jaise,<br>
-taqdeer ne chupke se meri zindagi par<br>
-tumhara naam likh diya ho.
-</p>
+<p>Kuch log zindagi mein aate hain,<br>aur kuch log zindagi ban jaate hain.</p>
 <div class="tap">Tap to continue</div>
 </div></section>
 
@@ -280,10 +273,8 @@ ke khud ko dhundhta hoon aur tum mil jaati ho.
 <section class="page"><div class="card">
 <h2 id="wishTitle">Always</h2>
 <p id="wishText">
-Tujhe iss kadar chaunga chahe jamana badle,<br>
-Khair ye toh saal hi badla hai pr mera pyar thodehi badla hai,<br>
-Hrr saal ki shuruwat bhi tum,<br>
-Aur saal ka ant bhi tum.
+Harr saal ki shuruaat bhi tum,<br>
+aur saal ka ant bhi tum.
 </p>
 <div class="footer">— Rohan</div>
 </div></section>
@@ -303,42 +294,74 @@ Aur saal ka ant bhi tum.
 </div>
 
 <script>
-const pass=document.getElementById("pass");
-const lock=document.getElementById("lock");
-const music=document.getElementById("music");
-const noBtn=document.getElementById("noBtn");
-const loveResult=document.getElementById("loveResult");
+/* DOM REFERENCES */
+const pass = document.getElementById("pass");
+const lock = document.getElementById("lock");
+const music = document.getElementById("music");
+const noBtn = document.getElementById("noBtn");
+const loveResult = document.getElementById("loveResult");
+const pages = document.getElementById("pages");
+const lovePage = document.getElementById("lovePage");
+const wishTitle = document.getElementById("wishTitle");
+const wishText = document.getElementById("wishText");
 const d=document.getElementById("d");
 const h=document.getElementById("h");
 const m=document.getElementById("m");
 const s=document.getElementById("s");
 
+/* PASSWORD */
 function unlock(){
   if(pass.value==="Khushi"){
     lock.style.display="none";
     document.body.classList.remove("lock-scroll");
-  } else alert("Wrong password 🌷");
+  } else {
+    alert("Wrong password 🌷");
+  }
 }
 
+/* MUSIC */
 let playing=false;
 function toggleMusic(){
   playing?music.pause():music.play();
   playing=!playing;
 }
 
+/* NO BUTTON */
 function moveNo(){
   noBtn.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*100-50}px)`;
 }
 
+/* YES */
 function yesClicked(){
   loveResult.innerHTML="Mujhe pata tha 💖";
+  for(let i=0;i<20;i++){
+    const hrt=document.createElement("div");
+    hrt.className="heart";
+    hrt.textContent="❤️";
+    hrt.style.left=Math.random()*100+"vw";
+    hrt.style.top="60vh";
+    document.body.appendChild(hrt);
+    setTimeout(()=>hrt.remove(),1200);
+  }
 }
 
+/* COUNTDOWN */
 const TARGET_YEAR=2026;
+let fireworksStarted=false;
+
 setInterval(()=>{
   const now=new Date();
   const target=new Date(TARGET_YEAR,0,1);
   const diff=target-now;
+
+  if(diff<=0 && !fireworksStarted){
+    fireworksStarted=true;
+    wishTitle.textContent="Happy New Year Khushi 🎆";
+    wishText.textContent="2026 tumse shuru ho raha hai.";
+    music.play();
+    startFireworks();
+    navigator.vibrate?.([300,200,300]);
+  }
 
   if(diff>0){
     d.textContent=Math.floor(diff/86400000);
@@ -347,6 +370,58 @@ setInterval(()=>{
     s.textContent=Math.floor(diff/1000)%60;
   }
 },1000);
+
+/* FIREWORKS */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+function resize(){
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+}
+resize();
+addEventListener("resize",resize);
+
+let particles=[];
+function startFireworks(){
+  setInterval(()=>{
+    const x=Math.random()*canvas.width;
+    const y=Math.random()*canvas.height*0.5;
+    for(let i=0;i<80;i++){
+      particles.push({
+        x,y,
+        vx:(Math.random()-0.5)*6,
+        vy:(Math.random()-0.5)*6,
+        life:80,
+        c:`hsl(${Math.random()*360},100%,60%)`
+      });
+    }
+  },700);
+}
+
+(function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach((p,i)=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+    p.vy+=0.04;
+    p.life--;
+    ctx.fillStyle=p.c;
+    ctx.fillRect(p.x,p.y,2,2);
+    if(p.life<=0) particles.splice(i,1);
+  });
+  requestAnimationFrame(animate);
+})();
+
+/* TULIPS */
+const tulipSVG=`<svg viewBox="0 0 64 64"><path d="M32 2C24 14 20 22 20 32c0 8 6 14 12 14s12-6 12-14C44 22 40 14 32 2z" fill="#e63946"/><rect x="30" y="46" width="4" height="16" fill="#2a9d8f"/></svg>`;
+setInterval(()=>{
+  const t=document.createElement("div");
+  t.className="tulip";
+  t.innerHTML=tulipSVG;
+  t.style.left=Math.random()*100+"vw";
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),12000);
+},800);
 </script>
 
 </body>
