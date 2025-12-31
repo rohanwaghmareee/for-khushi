@@ -5,31 +5,62 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Khushi 🌷</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --red:#e63946;
+  --rose:#e63946;
   --pink:#ff7aa2;
+  --glass:rgba(255,255,255,.08);
+  --border:rgba(255,255,255,.18);
   --soft:#ffe5ec;
-  --dark:#09090f;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box}
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:radial-gradient(circle at top,#1b1b2f,#050509);
+html,body{
+  font-family:'Inter',sans-serif;
+  background:radial-gradient(circle at top,#1b0b12,#030303);
   color:white;
-  height:100vh;
-  overflow:hidden;
+  overflow-x:hidden;
 }
 
-/* PASSWORD SCREEN */
+/* AURA */
+.aura{
+  position:fixed;
+  inset:-20%;
+  background:
+    radial-gradient(circle at 30% 30%,#2b0b14 0%,transparent 40%),
+    radial-gradient(circle at 70% 70%,#12060a 0%,transparent 40%);
+  z-index:-3;
+}
+
+/* FIREWORKS */
+canvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+}
+
+/* MUSIC */
+.music-btn{
+  position:fixed;
+  top:16px;
+  right:16px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  color:white;
+  padding:8px 18px;
+  border-radius:30px;
+  z-index:50;
+}
+
+/* LOCK */
 .lock{
   position:fixed;
   inset:0;
-  background:linear-gradient(135deg,#0b0b12,#1b1b2f);
+  background:linear-gradient(135deg,#09090f,#1b1b2f);
   display:flex;
   justify-content:center;
   align-items:center;
@@ -37,32 +68,33 @@ body{
 }
 
 .lock-box{
-  background:rgba(255,255,255,0.08);
-  padding:30px;
-  border-radius:22px;
+  background:var(--glass);
+  padding:36px;
+  border-radius:26px;
   text-align:center;
   backdrop-filter:blur(20px);
+  width:320px;
 }
 
 .lock-box input{
-  margin-top:16px;
+  margin-top:18px;
   padding:12px;
   width:100%;
-  border-radius:12px;
+  border-radius:14px;
   border:none;
   text-align:center;
 }
 
 .lock-box button{
-  margin-top:14px;
-  padding:12px 28px;
+  margin-top:16px;
+  padding:12px 34px;
   border:none;
   border-radius:30px;
-  background:linear-gradient(135deg,var(--red),var(--pink));
+  background:linear-gradient(135deg,var(--rose),var(--pink));
   color:white;
 }
 
-/* Pages */
+/* PAGES */
 .pages{
   height:100vh;
   overflow-y:scroll;
@@ -73,205 +105,310 @@ body{
   height:100vh;
   scroll-snap-align:start;
   display:flex;
-  align-items:center;
   justify-content:center;
-  padding:20px;
-  perspective:1200px;
+  align-items:center;
+  padding:22px;
 }
 
-/* Card */
+/* CARD */
 .card{
-  max-width:520px;
+  max-width:560px;
   width:100%;
-  background:rgba(255,255,255,0.08);
-  border-radius:28px;
-  padding:36px 28px;
+  background:var(--glass);
+  border-radius:30px;
+  padding:40px 30px;
   text-align:center;
   backdrop-filter:blur(18px);
-  box-shadow:0 25px 60px rgba(230,57,70,.3);
-  animation:rotateIn 1.4s ease;
+  border:1px solid var(--border);
+  box-shadow:0 30px 70px rgba(230,57,70,.25);
 }
 
-@keyframes rotateIn{
-  from{transform:rotateY(25deg) scale(.9);opacity:0;}
-  to{transform:rotateY(0) scale(1);opacity:1;}
-}
-
-h1,h2{font-family:'Playfair Display',serif;margin-bottom:16px;}
-h1{font-size:2.4rem;color:var(--soft);}
-h2{font-size:2rem;color:#ffd6e0;}
-
-p{font-size:1.05rem;line-height:1.7}
-
-/* Slideshow */
-.slideshow{
-  position:relative;
-  height:260px;
-  border-radius:18px;
-  overflow:hidden;
+h1,h2{
+  font-family:'Playfair Display',serif;
   margin-bottom:18px;
 }
 
-.slideshow img{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  animation:slide 12s infinite;
-}
+h1{font-size:2.6rem;color:var(--soft)}
+h2{font-size:2.1rem;color:#ffd6e0}
 
-.slideshow img:nth-child(1){animation-delay:0s}
-.slideshow img:nth-child(2){animation-delay:4s}
-.slideshow img:nth-child(3){animation-delay:8s}
+p{font-size:1.08rem;line-height:1.75;opacity:.9}
 
-@keyframes slide{
-  0%,100%{opacity:0}
-  10%,30%{opacity:1}
-}
-
-/* SVG Tulips */
-.tulip{
-  position:fixed;
-  bottom:-60px;
-  width:40px;
-  animation:float 10s linear infinite, spin 6s linear infinite;
-  opacity:.8;
-}
-
-@keyframes float{
-  from{transform:translateY(0)}
-  to{transform:translateY(-120vh)}
-}
-@keyframes spin{
-  from{rotate:0deg}
-  to{rotate:360deg}
-}
-
-/* Tap hint */
-.tap{
-  margin-top:14px;
-  opacity:.6;
-  font-size:.85rem;
-}
-
-/* Footer */
-.footer{
-  font-size:.9rem;
-  opacity:.7;
+/* COUNTDOWN */
+.countdown{
+  display:flex;
+  justify-content:center;
+  gap:14px;
   margin-top:20px;
 }
 
-/* Music */
-.music{
-  position:fixed;
-  top:14px;
-  right:14px;
-  z-index:100;
-  padding:10px 18px;
-  border-radius:30px;
+.time-box{
   background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.3);
-  color:white;
+  padding:14px;
+  border-radius:16px;
+  min-width:70px;
 }
+
+.time-box span{
+  display:block;
+  font-size:1.5rem;
+  font-weight:700;
+}
+
+/* LOVE QUESTION */
+.love-buttons{
+  margin-top:30px;
+  position:relative;
+  height:140px;
+}
+
+.love-buttons button{
+  padding:12px 28px;
+  border:none;
+  border-radius:30px;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+  position:absolute;
+}
+
+#yesBtn{
+  background:linear-gradient(135deg,var(--rose),var(--pink));
+  color:white;
+  left:50%;
+  transform:translateX(-120%);
+}
+
+#noBtn{
+  background:rgba(255,255,255,.2);
+  color:white;
+  left:50%;
+  transform:translateX(20%);
+  animation:shake .3s infinite;
+}
+
+@keyframes shake{
+  0%{transform:translateX(20%) rotate(0)}
+  50%{transform:translateX(15%) rotate(-5deg)}
+  100%{transform:translateX(25%) rotate(5deg)}
+}
+
+/* HEARTS */
+.heart{
+  position:fixed;
+  font-size:26px;
+  animation:heartPop 1.2s ease forwards;
+  pointer-events:none;
+}
+
+@keyframes heartPop{
+  0%{transform:scale(.4);opacity:1}
+  100%{transform:translateY(-140px) scale(1.6);opacity:0}
+}
+
+/* TULIPS */
+.tulip{
+  position:fixed;
+  bottom:-60px;
+  width:42px;
+  animation:float 12s linear infinite, spin 8s linear infinite;
+  opacity:.85;
+}
+
+@keyframes float{to{transform:translateY(-130vh)}}
+@keyframes spin{to{rotate:360deg}}
+
+.footer{margin-top:26px;font-size:.9rem;opacity:.7}
+.tap{margin-top:16px;font-size:.85rem;opacity:.6}
+
+.lock-scroll{overflow:hidden}
 </style>
 </head>
 
-<body>
+<body class="lock-scroll">
 
-<!-- PASSWORD -->
+<div class="aura"></div>
+<canvas id="fireworks"></canvas>
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+<!-- LOCK -->
 <div class="lock" id="lock">
   <div class="lock-box">
     <h2>For Khushi 🌷</h2>
     <p>Enter the password</p>
-    <input type="password" id="pass" placeholder="Password">
+    <input id="pass" type="password">
     <button onclick="unlock()">Unlock</button>
   </div>
 </div>
 
+<!-- 🔊 PUT YOUR OWN SONG AS song.mp3 -->
 <audio id="music" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+  <source src="song.mp3" type="audio/mpeg">
 </audio>
-<button class="music" onclick="toggleMusic()">🎵</button>
 
-<div class="pages" onclick="nextPage()">
+<div class="pages" id="pages">
 
-  <section class="page">
-    <div class="card">
-      <h1>Hey Khushi 🌷</h1>
-      <p>You bloom in my life like tulips in spring.</p>
-      <div class="tap">Tap to turn page</div>
-    </div>
-  </section>
+<!-- PAGE 1 -->
+<section class="page"><div class="card">
+<h1>Hey Khushi 🌷</h1>
+<p>Kuch log zindagi mein aate hain,<br>aur kuch log zindagi ban jaate hain.</p>
+<div class="tap">Tap to continue</div>
+</div></section>
 
-  <section class="page">
-    <div class="card">
-      <div class="slideshow">
-        <img src="photo1.jpg">
-        <img src="photo2.jpg">
-        <img src="photo3.jpg">
-      </div>
-      <p>Every moment with you is a memory I keep close.</p>
-    </div>
-  </section>
+<!-- PAGE 2 -->
+<section class="page"><div class="card">
+<h2>Poetry</h2>
+<p>
+Tum mere andar itni gehri ho,<br>
+ke khud ko dhundhta hoon aur tum mil jaati ho.
+</p>
+</div></section>
 
-  <section class="page">
-    <div class="card">
-      <h2>Always</h2>
-      <p>
-        In every season,<br>
-        every version of life,<br>
-        I choose you.
-      </p>
-      <div class="footer">
-        — Rohan<br>
-        <span id="date"></span>
-      </div>
-    </div>
-  </section>
+<!-- PAGE 3 -->
+<section class="page" id="countdownPage"><div class="card">
+<h2>Countdown to 2026 🎆</h2>
+<p id="countText">Bas kuch lamhe aur…</p>
+<div class="countdown">
+  <div class="time-box"><span id="d">0</span>Days</div>
+  <div class="time-box"><span id="h">0</span>Hours</div>
+  <div class="time-box"><span id="m">0</span>Min</div>
+  <div class="time-box"><span id="s">0</span>Sec</div>
+</div>
+</div></section>
+
+<!-- PAGE 4 -->
+<section class="page"><div class="card">
+<h2 id="wishTitle">Always</h2>
+<p id="wishText">
+Har saal ki shuruaat bhi tum,<br>
+har saal ka ant bhi tum.
+</p>
+<div class="footer">— Rohan</div>
+</div></section>
+
+<!-- PAGE 5 -->
+<section class="page" id="lovePage"><div class="card">
+<h2>Ek Sawaal Hai 💗</h2>
+<p>Sach bataana…<br>ky mi tula aavadto ho?</p>
+
+<div class="love-buttons">
+  <button id="yesBtn" onclick="yesClicked()">Yes 💕</button>
+  <button id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()">No 🙈</button>
+</div>
+
+<p id="loveResult" style="margin-top:30px;"></p>
+</div></section>
 
 </div>
 
-<!-- SVG Tulips -->
 <script>
-const tulipSVG = `
-<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M32 2C24 14 20 22 20 32c0 8 6 14 12 14s12-6 12-14C44 22 40 14 32 2z" fill="#e63946"/>
-<rect x="30" y="46" width="4" height="16" fill="#2a9d8f"/>
-</svg>`;
+/* PASSWORD */
+function unlock(){
+  if(pass.value==="Khushi"){
+    lock.style.display="none";
+    document.body.classList.remove("lock-scroll");
+  }
+}
 
-/* Floating tulips */
+/* MUSIC */
+let playing=false;
+function toggleMusic(){
+  playing?music.pause():music.play();
+  playing=!playing;
+}
+
+/* NO BUTTON ESCAPE */
+function moveNo(){
+  const x=Math.random()*260-130;
+  const y=Math.random()*120-60;
+  noBtn.style.transform=`translate(${x}px,${y}px)`;
+}
+
+/* YES CLICK */
+function yesClicked(){
+  loveResult.innerHTML="Hehe… mujhe pata tha 💖<br>Tumhara YES dekh muhe pata hi tha tu haa hi bolegi😹.";
+  for(let i=0;i<25;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.textContent="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.top=Math.random()*60+40+"vh";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1200);
+  }
+}
+
+/* COUNTDOWN */
+const TARGET_YEAR=2026;
+function updateCountdown(){
+  const now=new Date();
+  const target=new Date(TARGET_YEAR,0,1);
+  const diff=target-now;
+
+  if(diff<=0){
+    wishTitle.textContent="🎉 Happy New Year Khushi 🌷";
+    wishText.innerHTML="2026 ki shuruaat tumse ho rahi hai.";
+    music.play();
+    startFireworks();
+    pages.scrollTo({top:lovePage.offsetTop,behavior:"smooth"});
+    navigator.vibrate?.([300,200,300]);
+    return;
+  }
+
+  d.textContent=Math.floor(diff/86400000);
+  h.textContent=Math.floor(diff/3600000)%24;
+  m.textContent=Math.floor(diff/60000)%60;
+  s.textContent=Math.floor(diff/1000)%60;
+}
+setInterval(updateCountdown,1000);
+
+/* FIREWORKS */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+let particles=[];
+
+function startFireworks(){
+  setInterval(()=>{
+    const x=Math.random()*canvas.width;
+    const y=Math.random()*canvas.height*0.5;
+    for(let i=0;i<100;i++){
+      particles.push({
+        x,y,
+        vx:(Math.random()-0.5)*6,
+        vy:(Math.random()-0.5)*6,
+        life:100,
+        c:`hsl(${Math.random()*360},100%,60%)`
+      });
+    }
+  },800);
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach((p,i)=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+    p.vy+=0.03;
+    p.life--;
+    ctx.fillStyle=p.c;
+    ctx.fillRect(p.x,p.y,2,2);
+    if(p.life<=0) particles.splice(i,1);
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+
+/* TULIPS */
+const tulipSVG=`<svg viewBox="0 0 64 64"><path d="M32 2C24 14 20 22 20 32c0 8 6 14 12 14s12-6 12-14C44 22 40 14 32 2z" fill="#e63946"/><rect x="30" y="46" width="4" height="16" fill="#2a9d8f"/></svg>`;
 setInterval(()=>{
   const t=document.createElement("div");
   t.className="tulip";
   t.innerHTML=tulipSVG;
   t.style.left=Math.random()*100+"vw";
   document.body.appendChild(t);
-  setTimeout(()=>t.remove(),10000);
-},600);
-
-/* Password */
-function unlock(){
-  if(document.getElementById("pass").value==="Khushi"){
-    document.getElementById("lock").style.display="none";
-  }
-}
-
-/* Music */
-let play=false;
-function toggleMusic(){
-  const m=document.getElementById("music");
-  play?m.pause():m.play();
-  play=!play;
-}
-
-/* Tap to turn */
-function nextPage(){
-  document.querySelector(".pages").scrollBy({top:window.innerHeight,behavior:"smooth"});
-}
-
-/* Date */
-document.getElementById("date").textContent=new Date().toDateString();
+  setTimeout(()=>t.remove(),12000);
+},700);
 </script>
 
 </body>
