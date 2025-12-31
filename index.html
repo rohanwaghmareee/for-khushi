@@ -1,244 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>For Khushi ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Khushi 🌷</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --pink: #ff5fa2;
-  --light: #ffe6f2;
-  --dark: #0b0b12;
+:root{
+  --red:#e63946;
+  --pink:#ff7aa2;
+  --soft:#ffe5ec;
+  --dark:#09090f;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,#1b1b2f,#050509);
+  color:white;
+  height:100vh;
+  overflow:hidden;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #1a1a2e, #000);
-  color: white;
-  height: 100vh;
-  overflow: hidden;
+/* PASSWORD SCREEN */
+.lock{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#0b0b12,#1b1b2f);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
 }
 
-/* Music button */
-.music-btn {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 10px 18px;
-  border-radius: 30px;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  z-index: 100;
-  backdrop-filter: blur(10px);
+.lock-box{
+  background:rgba(255,255,255,0.08);
+  padding:30px;
+  border-radius:22px;
+  text-align:center;
+  backdrop-filter:blur(20px);
+}
+
+.lock-box input{
+  margin-top:16px;
+  padding:12px;
+  width:100%;
+  border-radius:12px;
+  border:none;
+  text-align:center;
+}
+
+.lock-box button{
+  margin-top:14px;
+  padding:12px 28px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,var(--red),var(--pink));
+  color:white;
 }
 
 /* Pages */
-.pages {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+.pages{
+  height:100vh;
+  overflow-y:scroll;
+  scroll-snap-type:y mandatory;
 }
 
-.page {
-  height: 100vh;
-  scroll-snap-align: start;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 22px;
+.page{
+  height:100vh;
+  scroll-snap-align:start;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  perspective:1200px;
 }
 
-/* Letter card */
-.letter {
-  max-width: 520px;
-  width: 100%;
-  background: rgba(255,255,255,0.08);
-  border-radius: 26px;
-  padding: 36px 28px;
-  text-align: center;
-  backdrop-filter: blur(18px);
-  box-shadow: 0 20px 60px rgba(255,95,162,0.25);
-  animation: float 6s ease-in-out infinite;
+/* Card */
+.card{
+  max-width:520px;
+  width:100%;
+  background:rgba(255,255,255,0.08);
+  border-radius:28px;
+  padding:36px 28px;
+  text-align:center;
+  backdrop-filter:blur(18px);
+  box-shadow:0 25px 60px rgba(230,57,70,.3);
+  animation:rotateIn 1.4s ease;
 }
 
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+@keyframes rotateIn{
+  from{transform:rotateY(25deg) scale(.9);opacity:0;}
+  to{transform:rotateY(0) scale(1);opacity:1;}
 }
 
-h1, h2 {
-  font-family: 'Playfair Display', serif;
-  margin-bottom: 18px;
+h1,h2{font-family:'Playfair Display',serif;margin-bottom:16px;}
+h1{font-size:2.4rem;color:var(--soft);}
+h2{font-size:2rem;color:#ffd6e0;}
+
+p{font-size:1.05rem;line-height:1.7}
+
+/* Slideshow */
+.slideshow{
+  position:relative;
+  height:260px;
+  border-radius:18px;
+  overflow:hidden;
+  margin-bottom:18px;
 }
 
-h1 {
-  font-size: 2.4rem;
-  color: var(--light);
+.slideshow img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  animation:slide 12s infinite;
 }
 
-h2 {
-  font-size: 2rem;
-  color: #ffd9ec;
+.slideshow img:nth-child(1){animation-delay:0s}
+.slideshow img:nth-child(2){animation-delay:4s}
+.slideshow img:nth-child(3){animation-delay:8s}
+
+@keyframes slide{
+  0%,100%{opacity:0}
+  10%,30%{opacity:1}
 }
 
-p {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  opacity: 0.95;
+/* SVG Tulips */
+.tulip{
+  position:fixed;
+  bottom:-60px;
+  width:40px;
+  animation:float 10s linear infinite, spin 6s linear infinite;
+  opacity:.8;
 }
 
-/* Typing effect */
-.typing {
-  border-right: 2px solid white;
-  white-space: nowrap;
-  overflow: hidden;
-  animation: blink 0.8s infinite;
+@keyframes float{
+  from{transform:translateY(0)}
+  to{transform:translateY(-120vh)}
+}
+@keyframes spin{
+  from{rotate:0deg}
+  to{rotate:360deg}
 }
 
-@keyframes blink {
-  50% { border-color: transparent; }
+/* Tap hint */
+.tap{
+  margin-top:14px;
+  opacity:.6;
+  font-size:.85rem;
 }
 
-/* Final button */
-.final-btn {
-  margin-top: 26px;
-  padding: 14px 38px;
-  border-radius: 40px;
-  border: none;
-  background: linear-gradient(135deg, #ff5fa2, #ff8ccf);
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0 12px 30px rgba(255,95,162,0.45);
+/* Footer */
+.footer{
+  font-size:.9rem;
+  opacity:.7;
+  margin-top:20px;
 }
 
-/* Hearts */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  animation: rise 8s linear infinite;
-  opacity: 0.8;
-}
-
-@keyframes rise {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-120vh); opacity: 0; }
-}
-
-/* Desktop */
-@media (min-width: 768px) {
-  h1 { font-size: 3rem; }
-  h2 { font-size: 2.5rem; }
-  p  { font-size: 1.15rem; }
+/* Music */
+.music{
+  position:fixed;
+  top:14px;
+  right:14px;
+  z-index:100;
+  padding:10px 18px;
+  border-radius:30px;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.3);
+  color:white;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
-<audio id="bgMusic" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+<!-- PASSWORD -->
+<div class="lock" id="lock">
+  <div class="lock-box">
+    <h2>For Khushi 🌷</h2>
+    <p>Enter the password</p>
+    <input type="password" id="pass" placeholder="Password">
+    <button onclick="unlock()">Unlock</button>
+  </div>
+</div>
+
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
 </audio>
+<button class="music" onclick="toggleMusic()">🎵</button>
 
-<button class="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
-
-<div class="pages">
+<div class="pages" onclick="nextPage()">
 
   <section class="page">
-    <div class="letter">
-      <h1 class="typing" id="t1"></h1>
+    <div class="card">
+      <h1>Hey Khushi 🌷</h1>
+      <p>You bloom in my life like tulips in spring.</p>
+      <div class="tap">Tap to turn page</div>
     </div>
   </section>
 
   <section class="page">
-    <div class="letter">
-      <h2 class="typing" id="t2"></h2>
-      <p>
-        Your presence turns silence into comfort,  
-        and moments into memories I never want to lose.
-      </p>
+    <div class="card">
+      <div class="slideshow">
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+        <img src="photo3.jpg">
+      </div>
+      <p>Every moment with you is a memory I keep close.</p>
     </div>
   </section>
 
   <section class="page">
-    <div class="letter">
-      <h2>Khushi ✨</h2>
+    <div class="card">
+      <h2>Always</h2>
       <p>
-        You are not just beautiful to see,  
-        you are beautiful to feel, to know, to love.  
-        Every version of you feels like home.
-      </p>
-    </div>
-  </section>
-
-  <section class="page">
-    <div class="letter">
-      <h2>Forever 💖</h2>
-      <p>
-        In every lifetime,  
-        every universe,  
-        every reality —  
+        In every season,<br>
+        every version of life,<br>
         I choose you.
       </p>
-      <button class="final-btn">Yours, Always</button>
+      <div class="footer">
+        — Rohan<br>
+        <span id="date"></span>
+      </div>
     </div>
   </section>
 
 </div>
 
+<!-- SVG Tulips -->
 <script>
-function typeText(el, text, speed = 70) {
-  let i = 0;
-  function run() {
-    if (i < text.length) {
-      el.textContent += text.charAt(i);
-      i++;
-      setTimeout(run, speed);
-    }
-  }
-  run();
-}
+const tulipSVG = `
+<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M32 2C24 14 20 22 20 32c0 8 6 14 12 14s12-6 12-14C44 22 40 14 32 2z" fill="#e63946"/>
+<rect x="30" y="46" width="4" height="16" fill="#2a9d8f"/>
+</svg>`;
 
-typeText(document.getElementById("t1"), "Hey Khushi ❤️");
-typeText(document.getElementById("t2"), "You Are My Happiness");
+/* Floating tulips */
+setInterval(()=>{
+  const t=document.createElement("div");
+  t.className="tulip";
+  t.innerHTML=tulipSVG;
+  t.style.left=Math.random()*100+"vw";
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),10000);
+},600);
 
-const music = document.getElementById("bgMusic");
-let playing = false;
-
-function toggleMusic() {
-  if (!playing) {
-    music.play();
-    playing = true;
-    document.querySelector(".music-btn").textContent = "⏸ Pause Music";
-  } else {
-    music.pause();
-    playing = false;
-    document.querySelector(".music-btn").textContent = "🎵 Play Music";
+/* Password */
+function unlock(){
+  if(document.getElementById("pass").value==="Khushi"){
+    document.getElementById("lock").style.display="none";
   }
 }
 
-setInterval(() => {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerHTML = "❤️";
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.fontSize = Math.random() * 20 + 14 + "px";
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 8000);
-}, 400);
+/* Music */
+let play=false;
+function toggleMusic(){
+  const m=document.getElementById("music");
+  play?m.pause():m.play();
+  play=!play;
+}
+
+/* Tap to turn */
+function nextPage(){
+  document.querySelector(".pages").scrollBy({top:window.innerHeight,behavior:"smooth"});
+}
+
+/* Date */
+document.getElementById("date").textContent=new Date().toDateString();
 </script>
 
 </body>
