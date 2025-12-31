@@ -154,7 +154,7 @@ p{font-size:1.08rem;line-height:1.75;opacity:.9}
   font-weight:700;
 }
 
-/* LOVE QUESTION */
+/* LOVE */
 .love-buttons{
   margin-top:30px;
   position:relative;
@@ -187,7 +187,7 @@ p{font-size:1.08rem;line-height:1.75;opacity:.9}
 }
 
 @keyframes shake{
-  0%{transform:translateX(20%) rotate(0)}
+  0%{transform:translateX(20%)}
   50%{transform:translateX(15%) rotate(-5deg)}
   100%{transform:translateX(25%) rotate(5deg)}
 }
@@ -240,21 +240,18 @@ p{font-size:1.08rem;line-height:1.75;opacity:.9}
   </div>
 </div>
 
-<!-- 🔊 PUT YOUR OWN SONG AS song.mp3 -->
 <audio id="music" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <div class="pages" id="pages">
 
-<!-- PAGE 1 -->
 <section class="page"><div class="card">
 <h1>Hey Khushi 🌷</h1>
 <p>Kuch log zindagi mein aate hain,<br>aur kuch log zindagi ban jaate hain.</p>
 <div class="tap">Tap to continue</div>
 </div></section>
 
-<!-- PAGE 2 -->
 <section class="page"><div class="card">
 <h2>Poetry</h2>
 <p>
@@ -263,10 +260,8 @@ ke khud ko dhundhta hoon aur tum mil jaati ho.
 </p>
 </div></section>
 
-<!-- PAGE 3 -->
-<section class="page" id="countdownPage"><div class="card">
+<section class="page"><div class="card">
 <h2>Countdown to 2026 🎆</h2>
-<p id="countText">Bas kuch lamhe aur…</p>
 <div class="countdown">
   <div class="time-box"><span id="d">0</span>Days</div>
   <div class="time-box"><span id="h">0</span>Hours</div>
@@ -275,17 +270,18 @@ ke khud ko dhundhta hoon aur tum mil jaati ho.
 </div>
 </div></section>
 
-<!-- PAGE 4 -->
+<!-- 🔥 UPDATED TEXT HERE -->
 <section class="page"><div class="card">
 <h2 id="wishTitle">Always</h2>
 <p id="wishText">
-Har saal ki shuruaat bhi tum,<br>
-har saal ka ant bhi tum.
+Tujhe iss kadar chaunga chahe jamana badle,<br>
+Khair ye toh saal hi badla hai pr mera pyar thodehi badla hai,<br>
+Hrr saal ki shuruwat bhi tum,<br>
+Aur saal ka ant bhi tum.
 </p>
 <div class="footer">— Rohan</div>
 </div></section>
 
-<!-- PAGE 5 -->
 <section class="page" id="lovePage"><div class="card">
 <h2>Ek Sawaal Hai 💗</h2>
 <p>Sach bataana…<br>ky mi tula aavadto ho?</p>
@@ -301,114 +297,52 @@ har saal ka ant bhi tum.
 </div>
 
 <script>
-/* PASSWORD */
+const pass=document.getElementById("pass");
+const lock=document.getElementById("lock");
+const music=document.getElementById("music");
+const noBtn=document.getElementById("noBtn");
+const loveResult=document.getElementById("loveResult");
+const wishTitle=document.getElementById("wishTitle");
+const wishText=document.getElementById("wishText");
+const d=document.getElementById("d");
+const h=document.getElementById("h");
+const m=document.getElementById("m");
+const s=document.getElementById("s");
+
 function unlock(){
   if(pass.value==="Khushi"){
     lock.style.display="none";
     document.body.classList.remove("lock-scroll");
-  }
+  } else alert("Wrong password 🌷");
 }
 
-/* MUSIC */
 let playing=false;
 function toggleMusic(){
   playing?music.pause():music.play();
   playing=!playing;
 }
 
-/* NO BUTTON ESCAPE */
 function moveNo(){
-  const x=Math.random()*260-130;
-  const y=Math.random()*120-60;
-  noBtn.style.transform=`translate(${x}px,${y}px)`;
+  noBtn.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*100-50}px)`;
 }
 
-/* YES CLICK */
 function yesClicked(){
-  loveResult.innerHTML="Hehe… mujhe pata tha 💖<br>Tumhara YES dekh muhe pata hi tha tu haa hi bolegi😹.";
-  for(let i=0;i<25;i++){
-    const h=document.createElement("div");
-    h.className="heart";
-    h.textContent="❤️";
-    h.style.left=Math.random()*100+"vw";
-    h.style.top=Math.random()*60+40+"vh";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),1200);
-  }
+  loveResult.innerHTML="Mujhe pata tha 💖";
 }
 
-/* COUNTDOWN */
 const TARGET_YEAR=2026;
-function updateCountdown(){
+setInterval(()=>{
   const now=new Date();
   const target=new Date(TARGET_YEAR,0,1);
   const diff=target-now;
 
-  if(diff<=0){
-    wishTitle.textContent="🎉 Happy New Year Khushi 🌷";
-    wishText.innerHTML="2026 ki shuruaat tumse ho rahi hai.";
-    music.play();
-    startFireworks();
-    pages.scrollTo({top:lovePage.offsetTop,behavior:"smooth"});
-    navigator.vibrate?.([300,200,300]);
-    return;
+  if(diff>0){
+    d.textContent=Math.floor(diff/86400000);
+    h.textContent=Math.floor(diff/3600000)%24;
+    m.textContent=Math.floor(diff/60000)%60;
+    s.textContent=Math.floor(diff/1000)%60;
   }
-
-  d.textContent=Math.floor(diff/86400000);
-  h.textContent=Math.floor(diff/3600000)%24;
-  m.textContent=Math.floor(diff/60000)%60;
-  s.textContent=Math.floor(diff/1000)%60;
-}
-setInterval(updateCountdown,1000);
-
-/* FIREWORKS */
-const canvas=document.getElementById("fireworks");
-const ctx=canvas.getContext("2d");
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-let particles=[];
-
-function startFireworks(){
-  setInterval(()=>{
-    const x=Math.random()*canvas.width;
-    const y=Math.random()*canvas.height*0.5;
-    for(let i=0;i<100;i++){
-      particles.push({
-        x,y,
-        vx:(Math.random()-0.5)*6,
-        vy:(Math.random()-0.5)*6,
-        life:100,
-        c:`hsl(${Math.random()*360},100%,60%)`
-      });
-    }
-  },800);
-}
-
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach((p,i)=>{
-    p.x+=p.vx;
-    p.y+=p.vy;
-    p.vy+=0.03;
-    p.life--;
-    ctx.fillStyle=p.c;
-    ctx.fillRect(p.x,p.y,2,2);
-    if(p.life<=0) particles.splice(i,1);
-  });
-  requestAnimationFrame(animate);
-}
-animate();
-
-/* TULIPS */
-const tulipSVG=`<svg viewBox="0 0 64 64"><path d="M32 2C24 14 20 22 20 32c0 8 6 14 12 14s12-6 12-14C44 22 40 14 32 2z" fill="#e63946"/><rect x="30" y="46" width="4" height="16" fill="#2a9d8f"/></svg>`;
-setInterval(()=>{
-  const t=document.createElement("div");
-  t.className="tulip";
-  t.innerHTML=tulipSVG;
-  t.style.left=Math.random()*100+"vw";
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),12000);
-},700);
+},1000);
 </script>
 
 </body>
