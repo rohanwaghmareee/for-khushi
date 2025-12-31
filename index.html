@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Khushi ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #ff5fa2;
+  --light: #ffe6f2;
+  --dark: #0b0b12;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #1a1a2e, #000);
+  color: white;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Music button */
+.music-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 10px 18px;
+  border-radius: 30px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+/* Pages */
+.pages {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.page {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+
+/* Letter card */
+.letter {
+  max-width: 520px;
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  border-radius: 26px;
+  padding: 36px 28px;
+  text-align: center;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 60px rgba(255,95,162,0.25);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 2.4rem;
+  color: var(--light);
+}
+
+h2 {
+  font-size: 2rem;
+  color: #ffd9ec;
+}
+
+p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  opacity: 0.95;
+}
+
+/* Typing effect */
+.typing {
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* Final button */
+.final-btn {
+  margin-top: 26px;
+  padding: 14px 38px;
+  border-radius: 40px;
+  border: none;
+  background: linear-gradient(135deg, #ff5fa2, #ff8ccf);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(255,95,162,0.45);
+}
+
+/* Hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  animation: rise 8s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes rise {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.5rem; }
+  p  { font-size: 1.15rem; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
+
+<div class="pages">
+
+  <section class="page">
+    <div class="letter">
+      <h1 class="typing" id="t1"></h1>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="letter">
+      <h2 class="typing" id="t2"></h2>
+      <p>
+        Your presence turns silence into comfort,  
+        and moments into memories I never want to lose.
+      </p>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="letter">
+      <h2>Khushi ✨</h2>
+      <p>
+        You are not just beautiful to see,  
+        you are beautiful to feel, to know, to love.  
+        Every version of you feels like home.
+      </p>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="letter">
+      <h2>Forever 💖</h2>
+      <p>
+        In every lifetime,  
+        every universe,  
+        every reality —  
+        I choose you.
+      </p>
+      <button class="final-btn">Yours, Always</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+function typeText(el, text, speed = 70) {
+  let i = 0;
+  function run() {
+    if (i < text.length) {
+      el.textContent += text.charAt(i);
+      i++;
+      setTimeout(run, speed);
+    }
+  }
+  run();
+}
+
+typeText(document.getElementById("t1"), "Hey Khushi ❤️");
+typeText(document.getElementById("t2"), "You Are My Happiness");
+
+const music = document.getElementById("bgMusic");
+let playing = false;
+
+function toggleMusic() {
+  if (!playing) {
+    music.play();
+    playing = true;
+    document.querySelector(".music-btn").textContent = "⏸ Pause Music";
+  } else {
+    music.pause();
+    playing = false;
+    document.querySelector(".music-btn").textContent = "🎵 Play Music";
+  }
+}
+
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "❤️";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.fontSize = Math.random() * 20 + 14 + "px";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 8000);
+}, 400);
+</script>
+
+</body>
+</html>
